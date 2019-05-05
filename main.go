@@ -304,7 +304,11 @@ func firstline(name string) string {
 		}
 	}
 	body = strings.SplitN(strings.TrimSpace(body), "\n", 2)[0]
-	return strings.TrimLeft(body, "# ")
+	if strings.HasPrefix(body, "# ") {
+		return strings.TrimLeft(body, "# ")
+	} else {
+		return ""
+	}
 }
 
 func cmdList(c *cli.Context) error {
